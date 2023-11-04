@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Récupération du code source depuis le référentiel Git') {
+            steps {
+                // Checkout du code source depuis le référentiel Git
+                script {
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Affichage de la date système') {
+            steps {
+                script {
+                    def currentDate = sh(script: 'date', returnStatus: true).trim()
+                    echo "Date système : ${currentDate}"
+                }
+            }
+        }
+    }
+}
